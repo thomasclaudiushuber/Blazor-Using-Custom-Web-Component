@@ -1,0 +1,24 @@
+﻿@using BlazorWebComp.Data
+@inject IJSRuntime JSRuntime
+
+<friend-list @ref="friendList"></friend-list>
+
+@code{
+    private ElementReference friendList;
+
+    [Parameter]
+    public Friend[] Friends { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await InitWebComponentAsync();
+        }
+    }
+
+    private async Task InitWebComponentAsync()
+    {
+        await JSRuntime.InvokeVoidAsync("jsInterop.initializeFriendList", friendList, Friends);
+    }
+}

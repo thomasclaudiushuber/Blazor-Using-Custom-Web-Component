@@ -1,0 +1,27 @@
+﻿@page "/"
+@using BlazorWebComp.Data
+@inject IJSRuntime JSRuntime
+
+<h1>Hello, world!</h1>
+
+<friend-list @ref="friendList"></friend-list>
+
+
+@code{
+
+    private ElementReference friendList;
+
+    private Friend[] friends = new[]
+    {
+        new Friend{FirstName="Thomas Claudius",LastName="Huber"},
+        new Friend{FirstName="Gill",LastName="Cleeren"},
+    };
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JSRuntime.InvokeVoidAsync("jsInterop.initializeFriendList", friendList, friends);
+        }
+    }
+}

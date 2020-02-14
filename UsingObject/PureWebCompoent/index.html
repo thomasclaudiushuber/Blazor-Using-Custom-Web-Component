@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>web component</title>
+    <script src="friendListWebComp.js"></script>
+</head>
+
+<body>
+    <friend-list id="myFriendList">
+    </friend-list>
+    <script>
+        var friendList = document.getElementById('myFriendList');
+        friendList.friends = friends = [{
+            firstName: "Thomas",
+            lastName: "Huber"
+        }, {
+            firstName: "Gill",
+            lastName: "Cleeren"
+        }];
+    </script>
+</body>
+
+</html>
